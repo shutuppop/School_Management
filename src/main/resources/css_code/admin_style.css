@@ -1,0 +1,445 @@
+/* admin_style.css - Современный дизайн для административной панели */
+
+* {
+    -fx-font-family: "Segoe UI", "Inter", "Arial", sans-serif;
+}
+
+/* ===== КОРНЕВОЙ КОНТЕЙНЕР ===== */
+.root-container {
+    -fx-background-color: #f1f5f9;
+}
+
+/* ===== SCROLL PANE ===== */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 6;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #cbd5e1;
+    -fx-background-radius: 3;
+}
+
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #94a3b8;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: #f1f5f9;
+    -fx-background-radius: 3;
+}
+
+/* ===== ВЕРХНЯЯ ПАНЕЛЬ ===== */
+.header-panel {
+    -fx-background-color: linear-gradient(to right, #0f172a, #1e293b);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0, 0, 2);
+}
+
+.header-icon {
+    -fx-font-size: 26px;
+    -fx-fill: #10b981;
+}
+
+.header-title {
+    -fx-font-size: 20px;
+    -fx-fill: white;
+    -fx-font-weight: bold;
+}
+
+.header-subtitle {
+    -fx-font-size: 11px;
+    -fx-fill: #94a3b8;
+}
+
+.admin-badge {
+    -fx-text-fill: #10b981;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 4 12 4 12;
+    -fx-background-color: rgba(16, 185, 129, 0.15);
+    -fx-background-radius: 20;
+}
+
+.logout-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #f87171;
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-cursor: hand;
+    -fx-padding: 5 15 5 15;
+    -fx-border-color: #f87171;
+    -fx-border-radius: 20;
+    -fx-border-width: 1px;
+}
+
+.logout-btn:hover {
+    -fx-background-color: #f87171;
+    -fx-text-fill: white;
+}
+
+/* ===== КОНТЕНТ ===== */
+.content-area {
+    -fx-background-color: #f1f5f9;
+}
+
+/* ===== КАРТОЧКИ ===== */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.04), 6, 0, 0, 1);
+}
+
+.card-header {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 12 12 0 0;
+    -fx-padding: 12 16;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.card-icon {
+    -fx-font-size: 16px;
+}
+
+.card-title {
+    -fx-font-size: 14px;
+    -fx-fill: #1e293b;
+    -fx-font-weight: 600;
+}
+
+.card-content {
+    -fx-padding: 16;
+    -fx-spacing: 12;
+}
+
+/* ===== ПОЛЯ ВВОДА ===== */
+.input-label {
+    -fx-fill: #475569;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.input-field {
+    -fx-pref-height: 38px;
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 8;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+    -fx-border-width: 1px;
+    -fx-text-fill: #1e293b;
+    -fx-prompt-text-fill: #94a3b8;
+    -fx-padding: 0 12 0 12;
+    -fx-font-size: 12px;
+}
+
+.input-field:focused {
+    -fx-border-color: #10b981;
+    -fx-border-width: 1.5px;
+    -fx-background-color: white;
+}
+
+/* ===== КНОПКИ ===== */
+.btn-primary {
+    -fx-pref-height: 38px;
+    -fx-pref-width: 160px;
+    -fx-background-color: #10b981;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #059669;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #047857;
+}
+
+.btn-outline {
+    -fx-pref-height: 38px;
+    -fx-pref-width: 120px;
+    -fx-background-color: transparent;
+    -fx-background-radius: 8;
+    -fx-text-fill: #475569;
+    -fx-font-weight: 500;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 8;
+    -fx-border-width: 1px;
+}
+
+.btn-outline:hover {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #10b981;
+    -fx-text-fill: #10b981;
+}
+
+.btn-outline:pressed {
+    -fx-background-color: #f1f5f9;
+}
+
+.btn-icon {
+    -fx-pref-height: 32px;
+    -fx-padding: 0 12 0 12;
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 6;
+    -fx-text-fill: white;
+    -fx-font-weight: 500;
+    -fx-font-size: 11px;
+    -fx-cursor: hand;
+}
+
+.btn-icon:hover {
+    -fx-background-color: #2563eb;
+}
+
+.btn-small {
+    -fx-pref-width: 32px;
+    -fx-pref-height: 38px;
+    -fx-background-color: #10b981;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.btn-small:hover {
+    -fx-background-color: #059669;
+}
+
+/* ===== TOAST УВЕДОМЛЕНИЯ ===== */
+.toast {
+    -fx-background-color: #10b981;
+    -fx-background-radius: 8;
+    -fx-padding: 6 12 6 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 6, 0, 0, 1);
+}
+
+.toast-icon {
+    -fx-font-size: 12px;
+}
+
+.toast-message {
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: 500;
+}
+
+/* ===== СООБЩЕНИЯ ===== */
+.message {
+    -fx-padding: 6 10 6 10;
+    -fx-background-radius: 6;
+    -fx-font-size: 11px;
+    -fx-font-weight: 500;
+}
+
+.message.success {
+    -fx-background-color: rgba(16, 185, 129, 0.1);
+    -fx-border-color: #10b981;
+    -fx-border-radius: 6;
+    -fx-text-fill: #059669;
+}
+
+.message.error {
+    -fx-background-color: rgba(239, 68, 68, 0.1);
+    -fx-border-color: #ef4444;
+    -fx-border-radius: 6;
+    -fx-text-fill: #dc2626;
+}
+
+.message.warning {
+    -fx-background-color: rgba(245, 158, 11, 0.1);
+    -fx-border-color: #f59e0b;
+    -fx-border-radius: 6;
+    -fx-text-fill: #d97706;
+}
+
+/* ===== СПИННЕР ===== */
+.spinner {
+    -fx-progress-color: #10b981;
+}
+
+/* ===== ТАБЛИЦЫ ===== */
+.table {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+    -fx-border-width: 1px;
+}
+
+.table .column-header-background {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 8 8 0 0;
+}
+
+.table .column-header {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 8 0 8 0;
+}
+
+.table .column-header .label {
+    -fx-text-fill: #475569;
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+}
+
+.table .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: #f1f5f9;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table .table-row-cell:odd {
+    -fx-background-color: #fafcff;
+}
+
+.table .table-row-cell:selected {
+    -fx-background-color: #ecfdf5;
+}
+
+.table .table-row-cell:selected .table-cell {
+    -fx-text-fill: #059669;
+}
+
+.table .table-cell {
+    -fx-text-fill: #334155;
+    -fx-font-size: 11px;
+    -fx-padding: 8 6 8 6;
+}
+
+/* ===== ВКЛАДКИ ===== */
+.tab-pane {
+    -fx-background-color: transparent;
+    -fx-tab-min-height: 38px;
+    -fx-tab-max-height: 38px;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 15 0 15;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #f1f5f9;
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 5 18 5 18;
+    -fx-cursor: hand;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #10b981;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: white;
+    -fx-font-weight: 600;
+}
+
+.tab-pane .tab:hover:not(:selected) {
+    -fx-background-color: #e2e8f0;
+}
+
+.tab-pane .tab .tab-label {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 11px;
+    -fx-font-weight: 500;
+}
+
+/* ===== COMBOBOX ===== */
+.combo-box {
+    -fx-pref-height: 38px;
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 8;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+    -fx-border-width: 1px;
+    -fx-font-size: 12px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #10b981;
+    -fx-border-width: 1.5px;
+    -fx-background-color: white;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: #1e293b;
+    -fx-padding: 6 10 6 10;
+    -fx-background-color: white;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #ecfdf5;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #64748b;
+}
+
+/* ===== КНОПКА УДАЛЕНИЯ В ТАБЛИЦЕ ===== */
+.delete-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ef4444;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-padding: 2 6 2 6;
+    -fx-background-radius: 4;
+}
+
+.delete-btn:hover {
+    -fx-background-color: #fee2e2;
+}
+
+/* ===== SPLITPANE ===== */
+.split-pane {
+    -fx-background-color: transparent;
+}
+
+.split-pane-divider {
+    -fx-background-color: #e2e8f0;
+    -fx-pref-width: 2;
+}
+
+/* ===== ИНФОРМАЦИОННЫЕ ЭЛЕМЕНТЫ ===== */
+.info-title {
+    -fx-font-size: 13px;
+    -fx-fill: #1e293b;
+    -fx-font-weight: 600;
+}
+
+.info-label {
+    -fx-fill: #64748b;
+    -fx-font-size: 11px;
+    -fx-font-weight: 500;
+}
+
+.info-count {
+    -fx-text-fill: #10b981;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}

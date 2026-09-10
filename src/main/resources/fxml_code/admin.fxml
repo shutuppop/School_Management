@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.schoolmanagement.controller.AdminController"
+            prefHeight="750.0" prefWidth="1100.0"
+            stylesheets="/css_code/admin_style.css">
+
+    <BorderPane styleClass="root-container" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+        <!-- Верхняя панель -->
+        <top>
+            <VBox styleClass="header-panel" spacing="5.0">
+                <padding>
+                    <Insets top="20" right="30" bottom="15" left="30"/>
+                </padding>
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <Text text="📚" styleClass="header-icon"/>
+                    <Text text="School Management System" styleClass="header-title"/>
+                </HBox>
+                <Text text="Административная панель управления" styleClass="header-subtitle"/>
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <Label fx:id="adminNameLabel" text="Администратор" styleClass="admin-badge"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="🚪 Выйти" styleClass="logout-btn" onAction="#handleLogout"/>
+                </HBox>
+            </VBox>
+        </top>
+
+        <center>
+            <TabPane styleClass="tab-pane" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <!-- ВКЛАДКА: УЧИТЕЛЯ -->
+                <Tab text="👨‍🏫 Учителя" closable="false">
+                    <ScrollPane styleClass="scroll-pane" fitToWidth="true" fitToHeight="true">
+                        <VBox spacing="25.0" styleClass="content-area">
+                            <padding>
+                                <Insets top="20" right="30" bottom="20" left="30"/>
+                            </padding>
+
+                            <VBox styleClass="card">
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="card-header">
+                                    <Text text="➕" styleClass="card-icon"/>
+                                    <Text text="Добавление нового учителя" styleClass="card-title"/>
+                                </HBox>
+                                <VBox spacing="15.0" styleClass="card-content">
+                                    <HBox spacing="15.0">
+                                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                            <Text text="Фамилия" styleClass="input-label"/>
+                                            <TextField fx:id="secondNameField" promptText="Иванов" styleClass="input-field"/>
+                                        </VBox>
+                                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                            <Text text="Имя" styleClass="input-label"/>
+                                            <TextField fx:id="firstNameField" promptText="Иван" styleClass="input-field"/>
+                                        </VBox>
+                                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                            <Text text="Отчество" styleClass="input-label"/>
+                                            <TextField fx:id="middleNameField" promptText="Иванович" styleClass="input-field"/>
+                                        </VBox>
+                                    </HBox>
+                                    <HBox spacing="15.0">
+                                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                            <Text text="Email" styleClass="input-label"/>
+                                            <TextField fx:id="emailField" promptText="teacher@school.com" styleClass="input-field"/>
+                                        </VBox>
+                                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                            <Text text="Телефон" styleClass="input-label"/>
+                                            <TextField fx:id="phoneNumberField" promptText="+7 (999) 123-45-67" styleClass="input-field"/>
+                                        </VBox>
+                                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                            <Text text="Пароль" styleClass="input-label"/>
+                                            <PasswordField fx:id="passwordField" promptText="••••••••" styleClass="input-field"/>
+                                        </VBox>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                                        <Button text="Очистить" styleClass="btn-outline" onAction="#handleClearFields"/>
+                                        <Button fx:id="createTeacherButton" text="Создать учителя" styleClass="btn-primary" onAction="#handleCreateTeacher"/>
+                                    </HBox>
+                                    <VBox spacing="8.0" alignment="CENTER">
+                                        <HBox fx:id="toastNotification" alignment="CENTER" styleClass="toast" visible="false" managed="false">
+                                            <HBox alignment="CENTER" spacing="10.0">
+                                                <Text fx:id="toastIcon" text="✅" styleClass="toast-icon"/>
+                                                <Label fx:id="toastMessage" text="" styleClass="toast-message"/>
+                                            </HBox>
+                                        </HBox>
+                                        <Label fx:id="statusMessage" text="" styleClass="message" visible="false" managed="false"/>
+                                        <ProgressIndicator fx:id="loadingIndicator" styleClass="spinner" visible="false" managed="false" prefWidth="30" prefHeight="30"/>
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+
+                            <VBox styleClass="card" VBox.vgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="card-header">
+                                    <Text text="👥" styleClass="card-icon"/>
+                                    <Text text="Список учителей" styleClass="card-title"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button fx:id="refreshButton" text="🔄 Обновить" styleClass="btn-icon" onAction="#handleRefreshTable"/>
+                                </HBox>
+                                <VBox spacing="10.0" styleClass="card-content" VBox.vgrow="ALWAYS">
+                                    <TableView fx:id="teachersTable" styleClass="table" VBox.vgrow="ALWAYS">
+                                        <columns>
+                                            <TableColumn fx:id="secondNameColumn" text="Фамилия" prefWidth="120"/>
+                                            <TableColumn fx:id="firstNameColumn" text="Имя" prefWidth="100"/>
+                                            <TableColumn fx:id="middleNameColumn" text="Отчество" prefWidth="120"/>
+                                            <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+                                            <TableColumn fx:id="phoneNumberColumn" text="Телефон" prefWidth="150"/>
+                                        </columns>
+                                    </TableView>
+                                </VBox>
+                            </VBox>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+
+                <!-- ВКЛАДКА: ПРЕДМЕТЫ -->
+                <Tab text="📖 Предметы" closable="false">
+                    <ScrollPane styleClass="scroll-pane" fitToWidth="true" fitToHeight="true">
+                        <VBox spacing="25.0" styleClass="content-area">
+                            <padding>
+                                <Insets top="20" right="30" bottom="20" left="30"/>
+                            </padding>
+
+                            <VBox styleClass="card">
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="card-header">
+                                    <Text text="➕" styleClass="card-icon"/>
+                                    <Text text="Добавление нового предмета" styleClass="card-title"/>
+                                </HBox>
+                                <VBox spacing="15.0" styleClass="card-content">
+                                    <HBox spacing="15.0">
+                                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                            <Text text="Название предмета" styleClass="input-label"/>
+                                            <TextField fx:id="subjectNameField" promptText="Математика" styleClass="input-field"/>
+                                        </VBox>
+                                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                            <Text text="Преподаватель" styleClass="input-label"/>
+                                            <ComboBox fx:id="teacherComboBox" styleClass="combo-box"/>
+                                        </VBox>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                                        <Button text="Очистить" styleClass="btn-outline" onAction="#handleClearSubjectFields"/>
+                                        <Button fx:id="createSubjectButton" text="Создать предмет" styleClass="btn-primary" onAction="#handleCreateSubject"/>
+                                    </HBox>
+                                    <VBox spacing="8.0" alignment="CENTER">
+                                        <Label fx:id="subjectStatusMessage" text="" styleClass="message" visible="false" managed="false"/>
+                                        <ProgressIndicator fx:id="subjectLoadingIndicator" styleClass="spinner" visible="false" managed="false" prefWidth="30" prefHeight="30"/>
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+
+                            <VBox styleClass="card" VBox.vgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="card-header">
+                                    <Text text="📚" styleClass="card-icon"/>
+                                    <Text text="Список предметов" styleClass="card-title"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button fx:id="refreshSubjectsButton" text="🔄 Обновить" styleClass="btn-icon" onAction="#handleRefreshSubjects"/>
+                                </HBox>
+                                <VBox spacing="10.0" styleClass="card-content" VBox.vgrow="ALWAYS">
+                                    <TableView fx:id="subjectsTable" styleClass="table" VBox.vgrow="ALWAYS">
+                                        <columns>
+                                            <TableColumn fx:id="subjectNameColumn" text="Предмет" prefWidth="250"/>
+                                            <TableColumn fx:id="teacherNameColumn" text="Преподаватель" prefWidth="250"/>
+                                        </columns>
+                                    </TableView>
+                                </VBox>
+                            </VBox>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+
+                <!-- ВКЛАДКА: КЛАССЫ -->
+                <Tab text="🏫 Классы" closable="false">
+                    <ScrollPane styleClass="scroll-pane" fitToWidth="true" fitToHeight="true">
+                        <VBox spacing="25.0" styleClass="content-area">
+                            <padding>
+                                <Insets top="20" right="30" bottom="20" left="30"/>
+                            </padding>
+
+                            <!-- Карточка создания класса -->
+                            <VBox styleClass="card">
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="card-header">
+                                    <Text text="➕" styleClass="card-icon"/>
+                                    <Text text="Создание нового класса" styleClass="card-title"/>
+                                </HBox>
+
+                                <VBox spacing="15.0" styleClass="card-content">
+                                    <HBox spacing="15.0">
+                                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                            <Text text="Номер класса" styleClass="input-label"/>
+                                            <TextField fx:id="classLevelField" promptText="5" styleClass="input-field"/>
+                                        </VBox>
+                                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                                            <Text text="Буква класса" styleClass="input-label"/>
+                                            <TextField fx:id="classNameField" promptText="А" styleClass="input-field"/>
+                                        </VBox>
+                                    </HBox>
+
+                                    <!-- Выбор учителей -->
+                                    <VBox spacing="5.0">
+                                        <Text text="Добавить учителя" styleClass="input-label"/>
+                                        <HBox spacing="10.0">
+                                            <ComboBox fx:id="classTeacherComboBox" styleClass="combo-box" HBox.hgrow="ALWAYS"/>
+                                            <Button text="➕" onAction="#addTeacherToClass" styleClass="btn-small"/>
+                                        </HBox>
+                                        <TableView fx:id="selectedTeachersTable" styleClass="table" prefHeight="100">
+                                            <columns>
+                                                <TableColumn fx:id="selectedTeacherNameColumn" text="Фамилия Имя" prefWidth="200"/>
+                                                <TableColumn fx:id="selectedTeacherEmailColumn" text="Email" prefWidth="180"/>
+                                                <TableColumn fx:id="selectedTeacherActionColumn" text="" prefWidth="50"/>
+                                            </columns>
+                                        </TableView>
+                                    </VBox>
+
+                                    <!-- Выбор учеников -->
+                                    <VBox spacing="5.0">
+                                        <Text text="Добавить ученика" styleClass="input-label"/>
+                                        <HBox spacing="10.0">
+                                            <ComboBox fx:id="classStudentComboBox" styleClass="combo-box" HBox.hgrow="ALWAYS"/>
+                                            <Button text="➕" onAction="#addStudentToClass" styleClass="btn-small"/>
+                                        </HBox>
+                                        <TableView fx:id="selectedStudentsTable" styleClass="table" prefHeight="100">
+                                            <columns>
+                                                <TableColumn fx:id="selectedStudentNameColumn" text="Фамилия Имя" prefWidth="200"/>
+                                                <TableColumn fx:id="selectedStudentEmailColumn" text="Email" prefWidth="180"/>
+                                                <TableColumn fx:id="selectedStudentActionColumn" text="" prefWidth="50"/>
+                                            </columns>
+                                        </TableView>
+                                    </VBox>
+
+                                    <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                                        <Button text="Очистить" styleClass="btn-outline" onAction="#handleClearClassFields"/>
+                                        <Button fx:id="createClassButton" text="Создать класс" styleClass="btn-primary" onAction="#handleCreateClass"/>
+                                    </HBox>
+
+                                    <Label fx:id="classStatusMessage" text="" styleClass="message" visible="false" managed="false"/>
+                                    <ProgressIndicator fx:id="classLoadingIndicator" styleClass="spinner" visible="false" managed="false" prefWidth="30" prefHeight="30"/>
+                                </VBox>
+                            </VBox>
+
+                            <!-- Карточка списка классов -->
+                            <VBox styleClass="card" VBox.vgrow="ALWAYS">
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="card-header">
+                                    <Text text="📋" styleClass="card-icon"/>
+                                    <Text text="Список классов" styleClass="card-title"/>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Button fx:id="refreshClassesButton" text="🔄 Обновить" styleClass="btn-icon" onAction="#handleRefreshClasses"/>
+                                </HBox>
+
+                                <VBox spacing="10.0" styleClass="card-content" VBox.vgrow="ALWAYS">
+                                    <SplitPane dividerPositions="0.45" VBox.vgrow="ALWAYS">
+                                        <!-- Левая часть: таблица классов -->
+                                        <TableView fx:id="classesTable" styleClass="table">
+                                            <columns>
+                                                <TableColumn fx:id="classNumberColumn" text="Уровень класса" prefWidth="300"/>
+                                                <TableColumn fx:id="classNameColumn" text="Название класса" prefWidth="300"/>
+                                            </columns>
+                                        </TableView>
+
+                                        <!-- Правая часть: детали выбранного класса -->
+                                        <VBox spacing="10.0">
+                                            <Text text="📊 Детали класса" styleClass="info-title" fx:id="selectedClassTitle"/>
+
+                                            <!-- Ученики класса -->
+                                            <VBox spacing="5.0" VBox.vgrow="ALWAYS">
+                                                <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                    <Text text="👨‍🎓 Ученики" styleClass="info-label"/>
+                                                    <Label fx:id="studentsCountLabel" text="(0)" styleClass="info-count"/>
+                                                </HBox>
+                                                <TableView fx:id="studentsInClassTable" styleClass="table" VBox.vgrow="ALWAYS">
+                                                    <columns>
+                                                        <TableColumn fx:id="studentSecondNameColumn" text="Фамилия" prefWidth="100"/>
+                                                        <TableColumn fx:id="studentFirstNameColumn" text="Имя" prefWidth="80"/>
+                                                        <TableColumn fx:id="studentMiddleNameColumn" text="Отчество" prefWidth="100"/>
+                                                        <TableColumn fx:id="studentEmailColumn" text="Email" prefWidth="150"/>
+                                                    </columns>
+                                                </TableView>
+                                            </VBox>
+
+                                            <!-- Учителя класса -->
+                                            <VBox spacing="5.0" VBox.vgrow="ALWAYS">
+                                                <HBox alignment="CENTER_LEFT" spacing="5.0">
+                                                    <Text text="👨‍🏫 Учителя" styleClass="info-label"/>
+                                                    <Label fx:id="teachersCountLabel" text="(0)" styleClass="info-count"/>
+                                                </HBox>
+                                                <TableView fx:id="teachersInClassTable" styleClass="table" VBox.vgrow="ALWAYS">
+                                                    <columns>
+                                                        <TableColumn fx:id="teacherSecondNameColumn" text="Фамилия" prefWidth="100"/>
+                                                        <TableColumn fx:id="teacherFirstNameColumn" text="Имя" prefWidth="80"/>
+                                                        <TableColumn fx:id="teacherMiddleNameColumn" text="Отчество" prefWidth="100"/>
+                                                        <TableColumn fx:id="teacherEmailColumn" text="Email" prefWidth="150"/>
+                                                    </columns>
+                                                </TableView>
+                                            </VBox>
+                                        </VBox>
+                                    </SplitPane>
+                                </VBox>
+                            </VBox>
+                        </VBox>
+                    </ScrollPane>
+                </Tab>
+            </TabPane>
+        </center>
+    </BorderPane>
+</AnchorPane>

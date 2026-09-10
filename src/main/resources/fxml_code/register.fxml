@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.schoolmanagement.controller.RegisterController"
+            prefHeight="600.0" prefWidth="700.0"
+            stylesheets="/css_code/register_style.css">
+    <VBox alignment="CENTER" spacing="15.0" styleClass="root-container" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40" />
+        </padding>
+        <VBox alignment="CENTER" spacing="10.0">
+            <Text text="📚 Школьный дневник" styleClass="main-title"/>
+            <Text text="Регистрация студента" styleClass="subtitle"/>
+        </VBox>
+        <VBox alignment="CENTER" spacing="12.0" maxWidth="400.0">
+            <VBox spacing="5.0">
+                <Text text="Фамилия" styleClass="field-label"/>
+                <TextField fx:id="secondNameField"
+                           promptText="Иванов"
+                           styleClass="input-field"/>
+            </VBox>
+            <VBox spacing="5.0">
+                <Text text="Имя" styleClass="field-label"/>
+                <TextField fx:id="firstNameField"
+                           promptText="Иван"
+                           styleClass="input-field"/>
+            </VBox>
+            <VBox spacing="5.0">
+                <Text text="Отчество" styleClass="field-label"/>
+                <TextField fx:id="middleNameField"
+                           promptText="Иванович"
+                           styleClass="input-field"/>
+            </VBox>
+            <VBox spacing="5.0">
+                <Text text="Email" styleClass="field-label"/>
+                <TextField fx:id="emailField"
+                           promptText="example@mail.com"
+                           styleClass="input-field"/>
+            </VBox>
+            <VBox spacing="5.0">
+                <Text text="Номер телефона" styleClass="field-label"/>
+                <TextField fx:id="phoneNumberField"
+                           promptText="+7 (999) 123-45-67"
+                           styleClass="input-field"/>
+            </VBox>
+            <VBox spacing="5.0">
+                <Text text="Пароль" styleClass="field-label"/>
+                <PasswordField fx:id="passwordField"
+                               promptText="••••••••"
+                               styleClass="input-field"/>
+            </VBox>
+            <Button fx:id="registerButton"
+                    text="Зарегистрироваться"
+                    styleClass="register-button"
+                    onAction="#handleRegister"/>
+            <HBox alignment="CENTER" spacing="10.0">
+                <Separator styleClass="separator" HBox.hgrow="ALWAYS"/>
+                <Text text="или" styleClass="separator-text"/>
+                <Separator styleClass="separator" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            <Button fx:id="backToLoginButton"
+                    text="Вернуться ко входу"
+                    styleClass="back-button"
+                    onAction="#handleBackToLogin"/>
+            <Label fx:id="errorLabel"
+                   text=""
+                   styleClass="error-label"
+                   wrapText="true"
+                   alignment="CENTER"
+                   maxWidth="350.0"
+                   visible="false"/>
+            <Label fx:id="successLabel"
+                   text=""
+                   styleClass="success-label"
+                   wrapText="true"
+                   alignment="CENTER"
+                   maxWidth="350.0"
+                   visible="false"/>
+        </VBox>
+    </VBox>
+</AnchorPane>
